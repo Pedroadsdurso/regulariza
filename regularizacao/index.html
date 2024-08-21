@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessar Site Oficial</title>
+    <script>
+        var pixelPattern = /nemu_.{10}/;
+        var queryParams = document.location.search.replace("?", "").toString();
+        var links = document.getElementsByTagName("a");
+        
+        for (var i = 0, n = links.length; i < n; i++) {
+          if (links[i].href.includes("#")) {
+            continue;
+          }
+        
+          links[i].setAttribute("data-original-link-nemu", links[i].href);
+          var utms = ["utm_source", "utm_campaign", "utm_medium", "utm_content", "src"];
+          var params = document.location.search.replace("?", "").toString().split("&");
+          params = params.filter(function (param) { return utms.includes(param.split("=")[0]) }).join("&");
+          var href =
+            links[i].href.trim() +
+            (links[i].href.indexOf("?") > 0 ? "&" : "?") +
+            params;
+          links[i].href = href;
+        }
+        if (!pixelPattern.test(queryParams)) {
+          var timer = setInterval(function () {
+            if (pixelPattern.test(document.location.search)) {
+              var links = document.getElementsByTagName("a");
+        
+              var utms = ["utm_source", "utm_campaign", "utm_medium", "utm_content", "src"];
+              var params = document.location.search.replace("?", "").toString().split("&");
+              params = params.filter(function (param) { return utms.includes(param.split("=")[0]) }).join("&");
+        
+              for (var i = 0, n = links.length; i < n; i++) {
+                if (links[i].href.includes("#")) {
+                  continue;
+                }
+        
+                var originalLink = links[i].getAttribute("data-original-link-nemu") || links[i].href;
+        
+        
+                var href =
+                  originalLink.trim() +
+                  (originalLink.indexOf("?") > 0 ? "&" : "?") +
+                  params;
+                links[i].href = href;
+              }
+              clearInterval(timer);
+            }
+          }, 500);
+        
+          setTimeout(function() {
+            clearInterval(timer);
+          }, 20000);
+        }
+        </script>
+    
+        <script src="https://trackings.nemu.com.br/trackings/I4FiQCX60U/script.js" async data-tracking-id="I4FiQCX60U" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+            border: 4px solid #28a745;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #28a745;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover, .button:focus {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.tse.jus.br/imagens/fotos/e-titulo-1536685414224/@@images/8b428851-f251-43df-a97d-9f5c71fb8226.jpeg" alt="e-Título" class="image">
+        <a href="https://regularizaetitulo.org/oficial/index.html" class="button">Saiba Mais</a>
+        <footer>
+            <p><a href="https://regulariza-g.vercel.app/politica/index.html" target="_blank" rel="noopener noreferrer">Políticas de Privacidade</a> | Todos os Direitos Reservados</p>
+        </footer>
+    </div>
+</body>
+</html>
